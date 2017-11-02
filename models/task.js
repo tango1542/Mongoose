@@ -4,7 +4,10 @@ var Schema = mongoose.Schema;
 //Define your schema: what fields will one task document have
 var taskSchema = new Schema( {
   text: String,
-  completed: Boolean
+  dateCreated: Date,
+  dateCompleted: Date,
+  completed: Boolean,
+
 });
 
 // Compile taskSchema into Mongoose model object

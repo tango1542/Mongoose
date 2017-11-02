@@ -30,7 +30,8 @@ router.post('/add', function(req, res, next){
     // Insert into database. New tasks are assumed to be not completed.
 
     // Create a new Task, an instance of the Task schema, and call save()
-    new Task( { text: req.body.text, completed: false} ).save()
+    var date = new Date();
+    new Task( { text: req.body.text, completed: false, dateCreated: date} ).save()
       .then((newTask) => {
         console.log('The new task created is: ', newTask);
         res.redirect('/');
@@ -54,8 +55,8 @@ router.get('/completed', function(req, res, next){
 });
 
 router.post('/done', function(req, res, next) {
-
-  Task.findOneAndUpdate( {_id: req.body._id}, {$set: {completed: true}} )
+  var date = new Date();
+  Task.findOneAndUpdate( {_id: req.body._id}, {$set: {completed: true}}, {$set: {dateCompleted: date }} )
     .then((updatedTask) => {
       if (updatedTask) {   // updatedTask is the document *before* the update
         res.redirect('/')  // One thing was updated. Redirect to home
