@@ -15,12 +15,13 @@ var index = require('./routes/index');
 var app = express();
 var db_url = process.env.MONGO_URL;
 
+mongoose.Promise = global.Promise;  // use native ES6 promises
 
 mongoose.connect(db_url, { useMongoClient: true })
   .then( () => {  console.log('Connected to MongoDB') } )
   .catch( (err) => { console.log('Error Connecting to MongoDB', err); });
 
-mongoose.promise = global.Promise;  // use native ES6 promises
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
