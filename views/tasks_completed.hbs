@@ -5,4 +5,10 @@
     {{else}}
       <P>No tasks have been completed!</P>
       {{/each}}
+<br><br>
+      <form action="/deleteDone" method="POST" class="delete_form">
+        <input type="hidden" name="_id" value="{{this._id}}">
+        <input class="delete_button" type="submit" name="done" value="Delete All Completed Tasks">
+      </form>
+
     </div>
