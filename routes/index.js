@@ -69,8 +69,7 @@ router.post('/deleteDone', function(req, res, next) {
 
 router.post('/done', function(req, res, next) {
   var date = new Date();
-  Task.findOneAndUpdate( {_id: req.body._id}, {$set: {completed: true}}, {$set: {dateCompleted
-    : date }} )
+  Task.findOneAndUpdate( {_id: req.body._id}, {$set: {completed: true, dateCompleted: date}} )
     .then((updatedTask) => {
       if (updatedTask) {   // updatedTask is the document *before* the update
         res.redirect('/')  // One thing was updated. Redirect to home
